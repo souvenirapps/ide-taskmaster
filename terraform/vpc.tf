@@ -41,6 +41,21 @@ resource "google_compute_firewall" "allow-healthcheck-ingress" {
   target_tags = ["ide-worker"]
 }
 
+// Allow SSH connections through Identity-Aware Proxy's TCP forwarding.
+resource "google_compute_firewall" "allow-iap-ssh-tunnel" {
+  name    = "ide-worker-allow-ssh"
+  network = google_compute_network.vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  priority = 100
+
+  source_ranges = ["35.235.240.0/20"]
+}
+
 resource "google_compute_subnetwork" "private_subnet" {
   ip_cidr_range    = var.private_subnet_cidr
   name             = "ide-worker-${var.region}-private-subnet"
