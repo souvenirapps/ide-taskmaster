@@ -51,15 +51,11 @@ variable "ide_tasks_name" {
 }
 
 variable "ide_tasks_subscription" {
-  default = "ide-taskmaster-subscription"
+  default = "ide-tasks-subscription"
 }
 
 variable "ide_task_results_topic" {
   default = "projects/ide-api-3c305/topics/ide-tasks-results"
-}
-
-variable "worker_docker_image_name" {
-  default = "ifaisalalam/ide-taskmaster"
 }
 
 variable "app_env" {

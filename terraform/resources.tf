@@ -70,7 +70,7 @@ resource "google_compute_instance_template" "ide_worker" {
   sudo usermod -aG docker node
 
   sudo mkdir -p /home/node/taskmaster
-  git clone git@github.com:${var.worker_app_github} /home/node/taskmaster
+  git clone https://github.com/${var.worker_app_github}.git /home/node/taskmaster
   cd /home/node/taskmaster
   npm install
   npm run build
@@ -92,8 +92,8 @@ command=node /home/node/taskmaster/dist/taskmaster.js
 autostart=true
 autorestart=true
 environment=
-    CONTAINER_REGISTRY_PATH=${var.container_registry_path}
-    WORKER_BOX_DIR=${var.worker_output_path}/jobs
+    CONTAINER_REGISTRY_PATH=${var.container_registry_path},
+    WORKER_BOX_DIR=${var.worker_output_path}/jobs,
     PUBSUB_IDE_TOPIC=${var.ide_tasks_name},
     PUBSUB_IDE_SUBSCRIPTION=${var.ide_tasks_subscription},
     PUBSUB_IDE_OUTPUT_TOPIC=${var.ide_task_results_topic},
