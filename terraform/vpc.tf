@@ -42,6 +42,7 @@ resource "google_compute_firewall" "allow-healthcheck-ingress" {
 }
 
 // Allow SSH connections through Identity-Aware Proxy's TCP forwarding.
+// See https://cloud.google.com/iap/docs/using-tcp-forwarding
 resource "google_compute_firewall" "allow-iap-ssh-tunnel" {
   name    = "ide-worker-allow-ssh"
   network = google_compute_network.vpc.name
