@@ -61,5 +61,5 @@ resource "google_compute_subnetwork" "private_subnet" {
   name             = "ide-worker-${var.region}-private-subnet"
   network          = google_compute_network.vpc.self_link
   region           = var.region
-  enable_flow_logs = true
+  enable_flow_logs = false
 }
