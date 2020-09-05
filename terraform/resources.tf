@@ -92,6 +92,7 @@ command=node /home/node/taskmaster/dist/taskmaster.js
 autostart=true
 autorestart=true
 environment=
+    CONTAINER_REGISTRY_PATH=${var.container_registry_path}
     WORKER_BOX_DIR=${var.worker_output_path}/jobs
     PUBSUB_IDE_TOPIC=${var.ide_tasks_name},
     PUBSUB_IDE_SUBSCRIPTION=${var.ide_tasks_subscription},

@@ -20,3 +20,5 @@ EOF
 )
 
 export TF_VAR_docker_pull_workers
+
+export TF_VAR_container_registry_path=$CONTAINER_REGISTRY_PATH

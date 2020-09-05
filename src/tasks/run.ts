@@ -14,7 +14,7 @@ const worker = async (message: IJob) => {
   mkdir('-p', jobExecutionPath);
 
   const LANG_CONFIG = config.WORKER.LANG[message.lang];
-  const CONTAINER_BASE_PATH = config.WORKER.CONTAINER_BASE_PATH;
+  const CONTAINER_REGISTRY_PATH = config.WORKER.CONTAINER_REGISTRY_PATH;
 
   fs.writeFileSync(
     path.join(jobExecutionPath, LANG_CONFIG.SOURCE_FILE),
@@ -36,7 +36,7 @@ const worker = async (message: IJob) => {
     -w ${config.WORKER.BOX_DIR} \\
     -e DEFAULT_TIMEOUT=${message.timeoutSeconds || 5} \\
     --network no-internet \\
-    ${CONTAINER_BASE_PATH}/ide-worker-${message.lang} \\
+    ${CONTAINER_REGISTRY_PATH}/ide-worker-${message.lang} \\
     bash -c "/bin/compile.sh && /bin/run.sh"
   `);
 

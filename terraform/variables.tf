@@ -85,3 +85,7 @@ variable "worker_output_path" {
 variable "docker_pull_workers" {
   description = "Set of docker pull commands to pull all the worker containers."
 }
+
+variable "container_registry_path" {
+  description = "GCR Base URL"
+}
