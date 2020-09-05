@@ -28,6 +28,6 @@ terraform validate
 
 terraform taint google_compute_instance_template.ide_worker 2> /dev/null
 
-terraform plan
+terraform plan -refresh=true -out=tfplan
 
-terraform apply -auto-approve
+terraform apply -auto-approve -lock=true tfplan

@@ -20,7 +20,7 @@ resource "google_compute_instance_template" "ide_worker" {
     source_image = data.google_compute_image.vm_image.self_link
     auto_delete  = true
     boot         = true
-    disk_size_gb = 16
+    disk_size_gb = 30
   }
 
   scheduling {

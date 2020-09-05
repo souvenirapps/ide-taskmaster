@@ -15,7 +15,7 @@ variable "zone_2" {
 }
 
 variable "private_subnet_cidr" {
-  default = "10.11.11.0/16"
+  default = "10.11.11.0/24"
 }
 
 variable "machine_type" {
