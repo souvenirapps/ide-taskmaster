@@ -4,6 +4,8 @@ cd "$(dirname "$0")" || exit
 
 PWD=$(pwd)
 
+. ./export-env-vars.sh
+
 if [ -z "$GCS_BUCKET_NAME" ]; then
   printf "Environment variable \$GCS_BUCKET_NAME is not set.\n"
   exit 1

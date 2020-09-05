@@ -5,7 +5,7 @@ module.exports = {
     OUTPUT_TOPIC: process.env.PUBSUB_IDE_OUTPUT_TOPIC || 'projects/project-id/topics/ide-task-results'
   },
   WORKER: {
-    MAX_CONCURRENT_TASKS: parseInt(process.env.MAX_CONCURRENT_JOBS) || 1,
+    MAX_CONCURRENT_TASKS: parseInt(process.env.MAX_CONCURRENT_JOBS) || 20,
     BOX_DIR: process.env.WORKER_BOX_DIR || '/tmp/box/jobs',
     LANG: {
       'c': {
@@ -32,6 +32,11 @@ module.exports = {
         SOURCE_FILE: 'source.js',
         CPU_SHARES: '0.8',
         MEM_LIMIT: '300m'
+      },
+      'java8': {
+        SOURCE_FILE: 'Main.java',
+        CPU_SHARES: '1.2',
+        MEM_LIMIT: '500m'
       }
     }
   }

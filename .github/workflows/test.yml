@@ -50,13 +50,19 @@ jobs:
         run: npm install
 
       - name: Build Docker Image
+        env:
+          CONTAINER_REGISTRY_PATH: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCR_BASE_PATH }}
         run: ./build_docker_image.sh
 
       - name: Pull worker images
+        env:
+          CONTAINER_REGISTRY_PATH: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCR_BASE_PATH }}
         run: ./pull_worker_images.sh
 
       - name: Run Test
         run: npm run test
 
       - name: Test as Docker
+        env:
+          CONTAINER_REGISTRY_PATH: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCR_BASE_PATH }}
         run: ./test_as_docker.sh

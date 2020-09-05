@@ -2,6 +2,10 @@
 
 cd "$(dirname "$0")" || exit
 
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+. ./export-env-vars.sh
 
-docker push ifaisalalam/ide-taskmaster
+gcloud auth configure-docker
+
+docker tag "$TASKMASTER_CONTAINER_NAME" "$CONTAINER_REGISTRY_PATH/$TASKMASTER_CONTAINER_NAME"
+
+docker push "$CONTAINER_REGISTRY_PATH/$TASKMASTER_CONTAINER_NAME"

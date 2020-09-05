@@ -1,37 +1,37 @@
 variable "project_id" {
-  default = "ctfhubio"
+  default = "ide-api-3c305"
 }
 
 variable "region" {
-  default = "asia-south1"
+  default = "us-central1"
 }
 
 variable "zone" {
-  default = "asia-south1-c"
+  default = "us-central1-a"
 }
 
 variable "zone_2" {
-  default = "asia-south1-b"
+  default = "us-central1-c"
 }
 
 variable "private_subnet_cidr" {
-  default = "10.11.11.0/24"
+  default = "10.11.11.0/16"
 }
 
 variable "machine_type" {
-  default = "n1-standard-2"
+  default = "e2-standard-2"
 }
 
 variable "instance_service_account" {
-  default = "ide-worker@ctfhubio.iam.gserviceaccount.com"
+  default = "ide-worker@ide-api-3c305.iam.gserviceaccount.com"
 }
 
 variable "min_replica" {
-  default = 1
+  default = 2
 }
 
 variable "max_replica" {
-  default = 2
+  default = 10
 }
 
 variable "cool_down_period" {
@@ -47,7 +47,7 @@ variable "max_surge_fixed" {
 }
 
 variable "ide_tasks_name" {
-  default = "projects/ctfhubio/topics/ide-tasks"
+  default = "projects/ide-api-3c305/topics/ide-tasks"
 }
 
 variable "ide_tasks_subscription" {
@@ -55,7 +55,7 @@ variable "ide_tasks_subscription" {
 }
 
 variable "ide_task_results_topic" {
-  default = "projects/ctfhubio/topics/ide-task-results"
+  default = "projects/ide-api-3c305/topics/ide-tasks-results"
 }
 
 variable "worker_docker_image_name" {
@@ -67,5 +67,21 @@ variable "app_env" {
 }
 
 variable "single_instance_max_task" {
-  default = 1
+  default = 40
+}
+
+variable "worker_app_github" {
+  default = "souvenirapps/ide-taskmaster"
+}
+
+variable "single_instance_concurrent_task" {
+  default = 20
+}
+
+variable "worker_output_path" {
+  default = "/tmp/box"
+}
+
+variable "docker_pull_workers" {
+  description = "Set of docker pull commands to pull all the worker containers."
 }

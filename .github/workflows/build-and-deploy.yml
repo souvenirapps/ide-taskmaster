@@ -16,21 +16,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup gcloud CLI
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
+          export_default_credentials: true
+
+      - name: Setup Docker
+        uses: actions-hub/docker@master
+
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
 
       - name: Build Docker Image
+        env:
+          CONTAINER_REGISTRY_PATH: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCR_BASE_PATH }}
         run: ./build_docker_image.sh
 
       - name: Push Docker Image to Docker Hub
-        uses: actions-hub/docker/login@master
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        with:
-          args: push ifaisalalam/ide-taskmaster
+          CONTAINER_REGISTRY_PATH: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCR_BASE_PATH }}
+        run: ./push_docker_image.sh
 
   deploy:
     name: Deploy
@@ -50,4 +60,5 @@ jobs:
           GCS_BUCKET_NAME: ${{ secrets.GCS_BUCKET_NAME }}
           GCS_BUCKET_PATH: ${{ secrets.GCS_BUCKET_PATH }}
           GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
+          CONTAINER_REGISTRY_PATH: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCR_BASE_PATH }}
         run: ./terraform-apply.sh
