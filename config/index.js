@@ -5,6 +5,7 @@ module.exports = {
     OUTPUT_TOPIC: process.env.PUBSUB_IDE_OUTPUT_TOPIC || 'projects/project-id/topics/ide-task-results'
   },
   WORKER: {
+    CONTAINER_BASE_PATH: process.env.CONTAINER_REGISTRY_PATH || 'ifaisalalam',
     MAX_CONCURRENT_TASKS: parseInt(process.env.MAX_CONCURRENT_JOBS) || 20,
     BOX_DIR: process.env.WORKER_BOX_DIR || '/tmp/box/jobs',
     LANG: {
