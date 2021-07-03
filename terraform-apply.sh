@@ -20,7 +20,7 @@ cd ./terraform || (printf "Cannot find terraform directory.\n" && exit 1)
 
 terraform init \
   --backend-config "bucket=$GCS_BUCKET_NAME" \
-  --backend-config "path=$GCS_BUCKET_PATH"
+  --backend-config "prefix=$GCS_BUCKET_PATH"
 
 terraform fmt -check
 
