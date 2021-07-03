@@ -1,5 +1,5 @@
 variable "project_id" {
-  default = "ide-api-3c305"
+  default = "ide-api-318715"
 }
 
 variable "region" {
@@ -47,7 +47,7 @@ variable "max_surge_fixed" {
 }
 
 variable "ide_tasks_name" {
-  default = "projects/ide-api-3c305/topics/ide-tasks"
+  default = "projects/ide-api-318715/topics/ide-tasks"
 }
 
 variable "ide_tasks_subscription" {
@@ -55,7 +55,7 @@ variable "ide_tasks_subscription" {
 }
 
 variable "ide_task_results_topic" {
-  default = "projects/ide-api-3c305/topics/ide-tasks-results"
+  default = "projects/ide-api-318715/topics/ide-tasks-results"
 }
 
 variable "app_env" {
