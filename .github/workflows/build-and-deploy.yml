@@ -48,12 +48,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Terraform
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         uses: hashicorp/setup-terraform@v1.2.0
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Deploy to GCE
         env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           GCS_BUCKET_NAME: ${{ secrets.GCS_BUCKET_NAME }}
           GCS_BUCKET_PATH: ${{ secrets.GCS_BUCKET_PATH }}
           GOOGLE_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
