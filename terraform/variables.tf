@@ -23,7 +23,7 @@ variable "machine_type" {
 }
 
 variable "instance_service_account" {
-  default = "ide-worker@ide-api-3c305.iam.gserviceaccount.com"
+  default = "ide-worker@ide-api-318715.iam.gserviceaccount.com"
 }
 
 variable "min_replica" {
